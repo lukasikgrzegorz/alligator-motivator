@@ -1,12 +1,12 @@
 import { verifyAuth } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import ChildForm from "@/components/child-form";
+import TaskItem from "@/components/task-item";
 import TaskForm from "@/components/task-form";
+import RewardItem from "@/components/reward-item";
 import RewardForm from "@/components/reward-form";
 import { getChild } from "@/lib/children";
 import { getTasks } from "@/lib/tasks";
 import { getRewards } from "@/lib/rewards";
-
 
 export default async function ChildDetailsPage({ params }) {
   const result = await verifyAuth();
@@ -33,10 +33,13 @@ export default async function ChildDetailsPage({ params }) {
         <ul>
           {tasks.map((task) => (
             <li key={task.id}>
-              <form>
-                {task.name} - {task.points} punktów
-                <button type="sumbit">Wykonaj</button>
-              </form>
+              <TaskItem
+                taskName={task.name}
+                taksPoints={task.points}
+                userId={userId}
+                childId={id}
+                childPoints={child.points}
+              />
             </li>
           ))}
         </ul>
@@ -48,7 +51,13 @@ export default async function ChildDetailsPage({ params }) {
         <ul>
           {rewards.map((reward) => (
             <li key={reward.id}>
-              {reward.name} - {reward.points} punktów
+              <RewardItem
+                rewardName={reward.name}
+                rewardPoints={reward.points}
+                userId={userId}
+                childId={id}
+                childPoints={child.points}
+              />
             </li>
           ))}
         </ul>

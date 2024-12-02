@@ -1,7 +1,7 @@
 "use server";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import { createChildren } from "@/lib/children";
+import { createChildren, updatePoints } from "@/lib/children";
 import { randomBytes } from "node:crypto";
 import { S3 } from "@aws-sdk/client-s3";
 
@@ -66,9 +66,9 @@ export async function addChild(prevState, formData) {
 }
 
 export async function updateChildPoints(prevState, formData) {
-  const id = formData.get("id");
+  const id = formData.get("childId");
   const userId = formData.get("userId");
-  const points = formData.get("points");
+  const points = Number(formData.get("points"));
   let errors = {};
 
   if (!userId) {
@@ -84,15 +84,16 @@ export async function updateChildPoints(prevState, formData) {
   }
 
   if (Object.keys(errors).length) {
+    console.log(errors);
     return {
       errors,
     };
   }
 
   try {
-    updateChildPoints(id, userId, points);
+    updatePoints(id, userId, points);
     revalidatePath(`/children/${id}`);
-    redirect(`/children${id}`);
+    redirect(`/children/${id}`);
   } catch (error) {
     throw error;
   }
