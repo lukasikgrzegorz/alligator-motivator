@@ -8,12 +8,13 @@ export default function ChildForm({ userId }) {
   return (
     <form id="auth-form" action={formAction}>
       <input type="hidden" name="userId" id="userId" value={userId} />
+      <ImagePicker name="image" label="Zdjęcie" isRequired={false} />
       <p>
-        <label htmlFor="name">Name</label>
+        <label htmlFor="name">Imię</label>
         <input type="text" name="name" id="name" />
       </p>
-      <ImagePicker name="image" label="image" isRequired={false} />
-      {formState.errors && (
+
+      {formState?.errors && (
         <ul id="form-errors">
           {Object.keys(formState.errors).map((error) => (
             <li key={error}>{formState.errors[error]}</li>
@@ -21,7 +22,7 @@ export default function ChildForm({ userId }) {
         </ul>
       )}
       <p>
-        <button type="submit">Add child</button>
+        <button type="submit">Dodaj dziecko</button>
       </p>
     </form>
   );

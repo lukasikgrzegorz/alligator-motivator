@@ -1,7 +1,7 @@
 "use server";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import { createChildren } from "@/lib/children";
+import { createTask } from "@/lib/tasks";
 import { randomBytes } from "node:crypto";
 import { S3 } from "@aws-sdk/client-s3";
 
@@ -18,13 +18,14 @@ const s3 = new S3({
   },
 });
 
-export async function addChild(prevState, formData) {
+export async function addTask(prevState, formData) {
   const name = formData.get("name");
   const image = formData.get("image");
+  const description = formData.get("description");
+  const points = formData.get("points");
   const userId = formData.get("userId");
+  const childId = formData.get("childId");
   let imageName = "";
-
-  console.log(userId);
 
   let errors = {};
 
@@ -33,7 +34,7 @@ export async function addChild(prevState, formData) {
   }
 
   if (name.trim().length < 2) {
-    errors.password = "Name must be at least 2 characters long.";
+    errors.name = "Name must be at least 2 characters long.";
   }
 
   if (image.size > 0) {
@@ -48,8 +49,6 @@ export async function addChild(prevState, formData) {
     });
   }
 
-  console.log(imageName);
-
   if (Object.keys(errors).length) {
     return {
       errors,
@@ -57,42 +56,9 @@ export async function addChild(prevState, formData) {
   }
 
   try {
-    createChildren(name, imageName, userId);
-    revalidatePath("/children");
-    redirect("/children");
-  } catch (error) {
-    throw error;
-  }
-}
-
-export async function updateChildPoints(prevState, formData) {
-  const id = formData.get("id");
-  const userId = formData.get("userId");
-  const points = formData.get("points");
-  let errors = {};
-
-  if (!userId) {
-    errors.user = "Incorrect authentication data";
-  }
-
-  if (!id) {
-    errors.id = "Child ID is required.";
-  }
-
-  if (typeof points !== "number" || points < 0) {
-    errors.points = "Points must be a non-negative number.";
-  }
-
-  if (Object.keys(errors).length) {
-    return {
-      errors,
-    };
-  }
-
-  try {
-    updateChildPoints(id, userId, points);
-    revalidatePath(`/children/${id}`);
-    redirect(`/children${id}`);
+    await createTask(name, imageName, description, points, userId, childId);
+    revalidatePath(`/children/${childId}`);
+    redirect(`/children/${childId}`);
   } catch (error) {
     throw error;
   }

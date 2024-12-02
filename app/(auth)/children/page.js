@@ -3,6 +3,9 @@ import { getChildren } from "@/lib/children";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
+const AWS_REGION = process.env.AWS_REGION;
+const AWS_BUCKET_NAME = process.env.AWS_BUCKET_NAME;
+
 export default async function TrainingPage() {
   const result = await verifyAuth();
 
@@ -19,10 +22,15 @@ export default async function TrainingPage() {
       <ul id="training-sessions">
         {userChildren.map((child) => (
           <li key={child.id}>
-            <img src={`/trainings/${child.image}`} alt={child.name} />
-            <div>
-              <h2>{child.name}</h2>
-            </div>
+            <Link href={`children/${child.id}`}>
+              <img
+                src={`https://${AWS_BUCKET_NAME}.s3.${AWS_REGION}.amazonaws.com/${child.image}`}
+                alt={child.name}
+              />
+              <div>
+                <h2>{child.name}</h2>
+              </div>
+            </Link>
           </li>
         ))}
       </ul>

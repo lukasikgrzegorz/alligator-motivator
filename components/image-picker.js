@@ -29,10 +29,9 @@ export default function ImagePicker({ label, name, isRequired }) {
 
   return (
     <div className={styles.picker}>
-      <label htmlFor={name}>{label}</label>
       <div className={styles.controls}>
         <div className={styles.preview}>
-          {!pickedImage && <p>Nie dodano obrazu.</p>}
+          {!pickedImage && <p>Nie dodano obrazu</p>}
           {pickedImage && (
             <Image
               src={pickedImage}
