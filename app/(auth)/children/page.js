@@ -2,6 +2,7 @@ import { verifyAuth } from "@/lib/auth";
 import { getChildren } from "@/lib/children";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 const AWS_REGION = process.env.AWS_REGION;
 const AWS_BUCKET_NAME = process.env.AWS_BUCKET_NAME;
@@ -18,15 +19,19 @@ export default async function TrainingPage() {
 
   return (
     <main>
-      <h1>Children</h1>
-      <ul id="training-sessions">
+      <h2>Wybierz dziecko</h2>
+      <ul id="children">
         {userChildren.map((child) => (
           <li key={child.id}>
             <Link href={`children/${child.id}`}>
-              <img
-                src={`https://${AWS_BUCKET_NAME}.s3.${AWS_REGION}.amazonaws.com/${child.image}`}
-                alt={child.name}
-              />
+              <div className="image-container">
+                <Image
+                  src={`https://${AWS_BUCKET_NAME}.s3.${AWS_REGION}.amazonaws.com/${child.image}`}
+                  fill
+                  alt={child.name}
+                />
+              </div>
+
               <div>
                 <h2>{child.name}</h2>
               </div>
@@ -35,7 +40,7 @@ export default async function TrainingPage() {
         ))}
       </ul>
       <Link href="children/add">
-        <button>Add child</button>
+        <button>Dodaj dziecko</button>
       </Link>
     </main>
   );

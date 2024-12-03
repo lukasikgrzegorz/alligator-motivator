@@ -6,6 +6,10 @@
   padding: 0px;
 }
 
+a{
+  text-decoration: none;
+}
+
 html {
   font-family: 'Poppins', sans-serif;
 }
@@ -55,12 +59,16 @@ ul {
   box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.4);
 }
 
-#auth-form img {
-  display: block;
+.image-container{
   width: 10rem;
   height: 10rem;
+  position: relative;
   margin: auto;
   filter: drop-shadow(0 0 6px rgba(30, 30, 32, 0.3));
+}
+
+img {
+  object-fit: cover;
 }
 
 #auth-form label {
@@ -89,7 +97,7 @@ ul {
   color: #46454a;
 }
 
-#auth-form button {
+button {
   width: 100%;
   max-width: 200px;
   font: inherit;
@@ -102,8 +110,8 @@ ul {
   margin-top: 1rem;
 }
 
-#auth-form button:hover,
-#auth-form button:active {
+button:hover,
+button:active {
   background-color: var(--button-hover);
 }
 
@@ -137,27 +145,17 @@ ul {
   font-size: 1.25rem;
 }
 
-#auth-header button {
-  font: inherit;
-  cursor: pointer;
-  padding: 0.5rem 1.5rem;
-  border: none;
-  background-color: #6f34a9;
-  color: #fff;
-  border-radius: 3px;
-}
-
-#auth-header button:hover,
-#auth-header button:active {
-  background-color: #5f2a8a;
-}
 
 main {
   max-width: 50rem;
   margin: 2rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
-#training-sessions {
+#children {
   max-width: 40rem;
   margin: 2rem auto;
   list-style: none;
@@ -167,33 +165,68 @@ main {
   grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
 }
 
-#training-sessions li {
+#children li {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 1rem 0;
   border-radius: 4px;
-  background-color: var(--session-background);
+  padding: 1rem;
+  background-color: var(--form-background);
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
 }
 
-#training-sessions li img {
+#children li img {
   width: 100%;
+  border-radius: 100%;
 }
 
-#training-sessions li h2 {
+#children li h2 {
   margin: 1rem 0 0 0;
   padding: 0 1rem;
-  color: #d0cfd6;
+  color: var(--text-color);
   font-size: 1rem;
   text-transform: uppercase;
 }
 
-#training-sessions li div {
+#children li div {
   text-align: center;
 }
 
-#training-sessions li p {
+#children li p {
   margin: 1rem;
   color: var(--session-text-color);
+}
+
+.wrapper{
+  display: flex;
+  gap: 10px;
+}
+
+.wrapper li{
+  display: flex;
+  width: 100%;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--form-background);
+  margin-bottom: 5px;
+  padding: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+}
+
+.child-card{
+  background-color: var(--form-background);
+  margin-bottom: 5px;
+  padding: 10px 30px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.child-card img{
+  border-radius: 100%;
 }

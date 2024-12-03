@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { useFormState } from "react-dom";
 
 import { auth } from "@/actions/auth-actions";
@@ -8,8 +9,8 @@ export default function AuthForm({ mode }) {
   const [formState, formAction] = useFormState(auth.bind(null, mode), {});
   return (
     <form id="auth-form" action={formAction}>
-      <div>
-        <img src="/images/logo.png" alt="A aligator icon" />
+      <div className="image-container">
+        <Image src="/images/logo.png" fill priority alt="A aligator icon" />
       </div>
       <p>
         <label htmlFor="email">Email</label>
@@ -32,9 +33,7 @@ export default function AuthForm({ mode }) {
         </button>
       </p>
       <p>
-        {mode === "login" && (
-          <Link href="/?mode=signup">Utwórz konto.</Link>
-        )}
+        {mode === "login" && <Link href="/?mode=signup">Utwórz konto.</Link>}
         {mode === "signup" && (
           <Link href="/?mode=login">Zaloguj się na istniejące konto.</Link>
         )}
