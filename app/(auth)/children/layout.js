@@ -1,4 +1,4 @@
-import "../../../globals.css";
+import "../../globals.css";
 import { logout } from "@/actions/auth-actions";
 import { FaSignOutAlt } from "react-icons/fa";
 
@@ -7,7 +7,7 @@ export const metadata = {
   description: "Aplikacja motywująca",
 };
 
-export default function AuthRootLayout({ children }) {
+export default function AuthRootLayout({ children, modal }) {
   return (
     <>
       <header id="auth-header">
@@ -17,6 +17,7 @@ export default function AuthRootLayout({ children }) {
           </button>
         </form> */}
       </header>
+      {modal}
       {children}
     </>
   );

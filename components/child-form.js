@@ -21,7 +21,7 @@ export default function ChildForm({ userId }) {
   };
 
   return (
-    <form id="auth-form" action={formAction} className={classes["form"]}>
+    <form action={formAction} className={classes["form"]}>
       <input type="hidden" name="userId" id="userId" value={userId} />
       <input
         type="hidden"
@@ -49,7 +49,6 @@ export default function ChildForm({ userId }) {
         </ul>
       ) : (
         <>
-          {" "}
           <div
             className={classes["avatar-container"]}
             onClick={handleAvatarsShow}>

@@ -5,13 +5,13 @@
   gap: 1rem;
   width: 90%;
   max-width: 30rem;
-  min-height: 60vh;
   border-radius: 1rem;
   padding: 2rem 3rem;
-  margin: 5rem auto;
   background-color: var(--form-background);
   box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.4);
+
 }
+
 
 .image {
   width: 100%;

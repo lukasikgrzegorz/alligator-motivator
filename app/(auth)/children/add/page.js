@@ -10,5 +10,9 @@ export default async function AddChildPage() {
   }
 
   const userId = result.user.id;
-  return <ChildForm userId={userId} />;
+  return (
+    <main>
+      <ChildForm userId={userId} />
+    </main>
+  );
 }
