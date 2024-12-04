@@ -33,7 +33,7 @@ export default async function ChildDetailsPage({ params }) {
         <div className={classes["image-container"]}>
           <Image
             className={classes["image"]}
-            src={`https://${AWS_BUCKET_NAME}.s3.${AWS_REGION}.amazonaws.com/${child.image}`}
+            src={child.image}
             fill
             alt={child.name}
           />

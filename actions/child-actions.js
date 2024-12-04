@@ -20,7 +20,7 @@ const s3 = new S3({
 
 export async function addChild(prevState, formData) {
   const name = formData.get("name");
-  const image = formData.get("image");
+  const imageUrl = formData.get("imageUrl");
   const userId = formData.get("userId");
   let imageName = "";
 
@@ -36,20 +36,6 @@ export async function addChild(prevState, formData) {
     errors.password = "Name must be at least 2 characters long.";
   }
 
-  if (image.size > 0) {
-    const extension = image.name.split(".").pop();
-    imageName = `${randomBytes(16).toString("hex")}.${extension}`;
-    const bufferedImage = await image.arrayBuffer();
-    await s3.putObject({
-      Bucket: AWS_BUCKET_NAME,
-      Key: imageName,
-      Body: Buffer.from(bufferedImage),
-      ContentType: image.type,
-    });
-  }
-
-  console.log(imageName);
-
   if (Object.keys(errors).length) {
     return {
       errors,
@@ -57,7 +43,7 @@ export async function addChild(prevState, formData) {
   }
 
   try {
-    createChildren(name, imageName, userId);
+    createChildren(name, imageUrl, userId);
     revalidatePath("/children");
     redirect("/children");
   } catch (error) {

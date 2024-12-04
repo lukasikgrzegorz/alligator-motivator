@@ -19,8 +19,6 @@ export default async function TrainingPage() {
   const userId = result.user.id;
   const userChildren = getChildren(userId);
 
-  console.log(userChildren);
-
   return (
     <main className={classes["container"]}>
       <h1 className={classes["title"]}>Kogo dziś motywujesz?</h1>
@@ -31,7 +29,7 @@ export default async function TrainingPage() {
               <div className={classes["image-container"]}>
                 <Image
                   className={classes["image"]}
-                  src={`https://${AWS_BUCKET_NAME}.s3.${AWS_REGION}.amazonaws.com/${child.image}`}
+                  src={child.image}
                   fill
                   alt={child.name}
                 />

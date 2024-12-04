@@ -1,6 +1,6 @@
 "use client";
 import { useRef, useState } from "react";
-import styles from "./image-picker.module.css";
+import classes from "./image-picker.module.css";
 import Image from "next/image";
 
 export default function ImagePicker({ label, name, isRequired }) {
@@ -28,9 +28,9 @@ export default function ImagePicker({ label, name, isRequired }) {
   }
 
   return (
-    <div className={styles.picker}>
-      <div className={styles.controls}>
-        <div className={styles.preview}>
+    <div className={classes.picker}>
+      <div className={classes.controls}>
+        <div className={classes.preview}>
           {!pickedImage && <p>Nie dodano obrazu</p>}
           {pickedImage && (
             <Image
@@ -41,7 +41,7 @@ export default function ImagePicker({ label, name, isRequired }) {
           )}
         </div>
         <input
-          className={styles.input}
+          className={classes.input}
           type="file"
           id={name}
           accept="image/png, image/jpeg"
@@ -51,7 +51,7 @@ export default function ImagePicker({ label, name, isRequired }) {
           required={isRequired}
         />
         <button
-          className={styles.button}
+          className={classes.button}
           type="button"
           onClick={handleClickPick}>
           Dodaj obraz
