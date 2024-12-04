@@ -1,6 +1,6 @@
-import "../globals.css";
-
+import "../../../globals.css";
 import { logout } from "@/actions/auth-actions";
+import { FaSignOutAlt } from "react-icons/fa";
 
 export const metadata = {
   title: "Aligatorek Motywatorek",
@@ -11,11 +11,10 @@ export default function AuthRootLayout({ children }) {
   return (
     <>
       <header id="auth-header">
-        <p>
-          <img width={70} src="/images/logo.png" alt="A aligator icon" />
-        </p>
         <form action={logout}>
-          <button>Wyloguj</button>
+          <button>
+            <FaSignOutAlt size={20} />
+          </button>
         </form>
       </header>
       {children}

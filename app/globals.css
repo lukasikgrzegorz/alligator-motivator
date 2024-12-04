@@ -1,4 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Parkinsans:wght@300..800&display=swap');
+:root {
+  --background-color: linear-gradient(#ebf5f9, #f0f2f9);
+  --text-color: #171717;
+  --form-background: #ffffff;
+  --button-background: #3e9d8f;
+  --button-hover: #6fcdbe;
+  --link-color: #3e9d8f;
+  --link-hover: #6fcdbe;
+  --error-color: #ff9c98;
+  --session-background: #0a0a0a;
+  --session-text-color: #7c7a80;
+  --accent-color: #3c8aa8;
+  --alt-accent-color: #ffa19d;
+  --alt-accent-secondary-color: #ffcec9;
+  --alt-accent-color-light: #ffcec9;
+  --light-color: #ffffff;
+}
 
 * {
   box-sizing: border-box;
@@ -8,23 +25,15 @@
 
 a{
   text-decoration: none;
+  color: inherit;
 }
 
 html {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Parkinsans', sans-serif;
 }
 
-:root {
-  --background-color: linear-gradient(#fefefe, #f0f2f9);
-  --text-color: #171717;
-  --form-background: #ffffff;
-  --button-background: #4255b1;
-  --button-hover: #354699;
-  --link-color: #4255b1;
-  --link-hover: #354699;
-  --error-color: #a21d4c;
-  --session-background: #0a0a0a;
-  --session-text-color: #7c7a80;
+button{
+  cursor: pointer;
 }
 
 body {
@@ -32,6 +41,7 @@ body {
   background: var(--background-color);
   color: var(--text-color);
   min-height: 100vh;
+  padding: 20px;
 }
 
 h1 {
@@ -45,86 +55,11 @@ ul {
   margin: 0;
 }
 
-#auth-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap:1rem;
-  width: 90%;
-  max-width: 30rem;
-  border-radius: 1rem;
-  padding: 2rem 3rem;
-  margin: 5rem auto;
-  background-color: var(--form-background);
-  box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.4);
-}
-
-.image-container{
-  width: 10rem;
-  height: 10rem;
-  position: relative;
-  margin: auto;
-  filter: drop-shadow(0 0 6px rgba(30, 30, 32, 0.3));
-}
-
-img {
+img{
   object-fit: cover;
 }
 
-#auth-form label {
-  display: block;
-  margin-bottom: 0.15rem;
-  font-weight: bold;
-  color: #46454a;
-  width: 100%;
-}
 
-#auth-form p {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-#auth-form input {
-  font: inherit;
-  width: 100%;
-  padding: 0.5rem;
-  border-radius:0.75rem;
-  border: 2px solid #f0f0f0;
-  background-color: #ffffff;
-  color: #46454a;
-}
-
-button {
-  width: 100%;
-  max-width: 200px;
-  font: inherit;
-  cursor: pointer;
-  padding: 0.5rem 1.5rem;
-  border: none;
-  background-color: var(--button-background);
-  color: #fff;
-  border-radius: 0.75rem;
-  margin-top: 1rem;
-}
-
-button:hover,
-button:active {
-  background-color: var(--button-hover);
-}
-
-#auth-form a {
-  color: var(--link-color);
-  text-decoration: none;
-  display: block;
-  text-align: center;
-}
-
-#auth-form a:hover {
-  color: var(--link-hover);
-}
 
 #form-errors {
   list-style: none;
@@ -135,16 +70,28 @@ button:active {
 
 #auth-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   max-width: 50rem;
-  margin: 2rem auto;
+  margin: auto;
 }
 
 #auth-header p {
   font-size: 1.25rem;
 }
 
+#auth-header button{
+    background-color: var(--alt-accent-color);
+    border: none;
+    color: var(--light-color);
+    border-radius: 100%;
+    padding: 12px 12px 10px 14px;
+
+}
+
+#auth-header button:hover{
+  background-color: var(--alt-accent-color-light);
+}
 
 main {
   max-width: 50rem;
@@ -155,48 +102,9 @@ main {
   flex-direction: column;
 }
 
-#children {
-  max-width: 40rem;
-  margin: 2rem auto;
-  list-style: none;
-  padding: 0;
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
-}
 
-#children li {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 1rem 0;
-  border-radius: 4px;
-  padding: 1rem;
-  background-color: var(--form-background);
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
-}
 
-#children li img {
-  width: 100%;
-  border-radius: 100%;
-}
 
-#children li h2 {
-  margin: 1rem 0 0 0;
-  padding: 0 1rem;
-  color: var(--text-color);
-  font-size: 1rem;
-  text-transform: uppercase;
-}
-
-#children li div {
-  text-align: center;
-}
-
-#children li p {
-  margin: 1rem;
-  color: var(--session-text-color);
-}
 
 .wrapper{
   display: flex;

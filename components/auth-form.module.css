@@ -1,0 +1,80 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 90%;
+  max-width: 25rem;
+  border-radius: 1rem;
+  padding: 2rem 3rem;
+  margin: 5rem auto;
+  background-color: var(--form-background);
+  box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.4);
+}
+
+.image-container {
+  width: 10rem;
+  height: 10rem;
+  position: relative;
+  margin: auto;
+  filter: drop-shadow(0 0 6px rgba(30, 30, 32, 0.3));
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.15rem;
+  font-weight: bold;
+  color: var(--text-color);
+  width: 100%;
+}
+
+.paragraph {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  font: inherit;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  border: 2px solid #f0f0f0;
+  background-color: #ffffff;
+  color: #46454a;
+}
+
+.button {
+  width: 100%;
+  max-width: 200px;
+  font: inherit;
+  cursor: pointer;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  background-color: var(--button-background);
+  color: #fff;
+  border-radius: 0.75rem;
+  margin-top: 1rem;
+}
+
+.button:hover,
+.button:active {
+  background-color: var(--button-hover);
+}
+
+.link {
+  color: var(--link-color);
+  text-decoration: none;
+  display: block;
+  text-align: center;
+}
+
+.link:hover {
+  color: var(--link-hover);
+}
+
+.link:visited {
+  color: var(--link-color);
+}
