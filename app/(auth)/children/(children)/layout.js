@@ -11,11 +11,11 @@ export default function AuthRootLayout({ children }) {
   return (
     <>
       <header id="auth-header">
-        <form action={logout}>
+        {/* <form action={logout}>
           <button>
             <FaSignOutAlt size={20} />
           </button>
-        </form>
+        </form> */}
       </header>
       {children}
     </>

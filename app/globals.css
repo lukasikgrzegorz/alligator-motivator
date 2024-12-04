@@ -15,6 +15,7 @@
   --alt-accent-secondary-color: #ffcec9;
   --alt-accent-color-light: #ffcec9;
   --light-color: #ffffff;
+  --profile-background-color: #3c8aa8;
 }
 
 * {
@@ -102,39 +103,3 @@ main {
   flex-direction: column;
 }
 
-
-
-
-
-.wrapper{
-  display: flex;
-  gap: 10px;
-}
-
-.wrapper li{
-  display: flex;
-  width: 100%;
-  border-radius: 5px;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--form-background);
-  margin-bottom: 5px;
-  padding: 10px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
-}
-
-.child-card{
-  background-color: var(--form-background);
-  margin-bottom: 5px;
-  padding: 10px 30px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
-  display: flex;
-  flex-direction: column;
-  border-radius: 5px;
-  justify-content: center;
-  align-items: center;
-}
-
-.child-card img{
-  border-radius: 100%;
-}
