@@ -9,7 +9,7 @@
   padding: 2rem 3rem;
   background-color: var(--form-background);
   box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.4);
-
+  position: relative;
 }
 
 
@@ -100,7 +100,13 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   justify-items: start;
-  margin: auto;
+  position: absolute;
+  height: calc(100% - 3.95rem);
+  width: 100%;
+  z-index: 2;
+  padding: 0.5rem 2rem;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .avatar-list .image{
@@ -123,6 +129,16 @@
 
 @media (max-width: 768px) {
   .avatar-list{grid-template-columns: repeat(3, 1fr);}
+}
+
+@media (max-width: 480px) {
+  .avatar-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.hidden{
+  display: none;
 }
 
 

@@ -6,8 +6,6 @@ import Image from "next/image";
 import { FaUserPlus } from "react-icons/fa";
 import classes from "./page.module.css";
 
-const AWS_REGION = process.env.AWS_REGION;
-const AWS_BUCKET_NAME = process.env.AWS_BUCKET_NAME;
 
 export default async function TrainingPage() {
   const result = await verifyAuth();

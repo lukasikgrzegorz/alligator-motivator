@@ -30,7 +30,7 @@ export default function ChildForm({ userId }) {
         value={`/avatars/${avatar}.jpg`}
       />
 
-      {showAvatars ? (
+      {showAvatars && (
         <ul className={classes["avatar-list"]}>
           {Array.from({ length: 12 }, (_, index) => (
             <li
@@ -47,47 +47,37 @@ export default function ChildForm({ userId }) {
             </li>
           ))}
         </ul>
-      ) : (
-        <>
-          <div
-            className={classes["avatar-container"]}
-            onClick={handleAvatarsShow}>
-            <button type="button" className={classes["edit-button"]}>
-              <FaPencilAlt size={60} />
-            </button>
-            <Image
-              src={`/avatars/${avatar}.jpg`}
-              fill
-              priority
-              alt="Avatar"
-              className={classes["image"]}
-            />
-          </div>
-          <p className={classes["paragraph"]}>
-            <label htmlFor="name" className={classes["label"]}>
-              Imię
-            </label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              className={classes["input"]}
-            />
-          </p>
-          {formState?.errors && (
-            <ul id="form-errors">
-              {Object.keys(formState.errors).map((error) => (
-                <li key={error}>{formState.errors[error]}</li>
-              ))}
-            </ul>
-          )}
-          <p className={classes["paragraph"]}>
-            <button type="submit" className={classes["button"]}>
-              Dodaj
-            </button>
-          </p>
-        </>
       )}
+      <div className={classes["avatar-container"]} onClick={handleAvatarsShow}>
+        <button type="button" className={classes["edit-button"]}>
+          <FaPencilAlt size={60} />
+        </button>
+        <Image
+          src={`/avatars/${avatar}.jpg`}
+          fill
+          priority
+          alt="Avatar"
+          className={classes["image"]}
+        />
+      </div>
+      <p className={classes["paragraph"]}>
+        <label htmlFor="name" className={classes["label"]}>
+          Imię
+        </label>
+        <input type="text" name="name" id="name" className={classes["input"]} />
+      </p>
+      {formState?.errors && (
+        <ul id="form-errors">
+          {Object.keys(formState.errors).map((error) => (
+            <li key={error}>{formState.errors[error]}</li>
+          ))}
+        </ul>
+      )}
+      <p className={classes["paragraph"]}>
+        <button type="submit" className={classes["button"]}>
+          Dodaj
+        </button>
+      </p>
     </form>
   );
 }

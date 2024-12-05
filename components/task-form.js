@@ -1,7 +1,8 @@
 "use client";
 import { useFormState } from "react-dom";
+import { useState } from "react";
 import { addTask } from "@/actions/task-actions";
-import ImagePicker from "./image-picker";
+
 
 export default function TaskForm({ userId, childId }) {
   const [formState, formAction] = useFormState(addTask, {});
@@ -10,7 +11,6 @@ export default function TaskForm({ userId, childId }) {
     <form id="task-form" action={formAction}>
       <input type="hidden" name="userId" id="userId" value={userId} />
       <input type="hidden" name="childId" id="childId" value={childId} />
-      <ImagePicker name="image" label="Zdjęcie" isRequired={false} />
       <p>
         <label htmlFor="name">Nazwa zadania</label>
         <input type="text" name="name" id="name" required />
