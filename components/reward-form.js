@@ -76,9 +76,9 @@ export default function RewardForm({ userId, childId }) {
         </p>
         <p className={`${classes["paragraph"]} ${classes["coin-paragraph"]}`}>
           <label htmlFor="points" className={classes["label"]}>
-            <div className={classes["coin-container"]}>
+            <span className={classes["coin-container"]}>
               <Image src="/images/coin.png" fill priority alt="A coin icon" />
-            </div>
+            </span>
           </label>
           <input
             type="number"
