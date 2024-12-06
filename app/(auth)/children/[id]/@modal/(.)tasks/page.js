@@ -1,9 +1,9 @@
 import { verifyAuth } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import ChildForm from "@/components/child-form";
+import TaskForm from "@/components/task-form";
 import Modal from "@/components/modal";
 
-export default async function AddChildPage() {
+export default async function AddTaskModalPage() {
   const result = await verifyAuth();
 
   if (!result.user) {
@@ -13,7 +13,7 @@ export default async function AddChildPage() {
   const userId = result.user.id;
   return (
     <Modal>
-      <ChildForm userId={userId} />
+      <TaskForm userId={userId} />
     </Modal>
   );
 }

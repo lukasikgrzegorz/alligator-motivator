@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import ChildForm from "@/components/child-form";
 import Modal from "@/components/modal";
 
-export default async function AddChildPage() {
+export default async function AddChildModalPage() {
   const result = await verifyAuth();
 
   if (!result.user) {

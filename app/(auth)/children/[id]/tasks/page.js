@@ -1,8 +1,8 @@
 import { verifyAuth } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import ChildForm from "@/components/child-form";
+import TaskForm from "@/components/task-form";
 
-export default async function AddChildPage() {
+export default async function AddTaskPage() {
   const result = await verifyAuth();
 
   if (!result.user) {
@@ -12,7 +12,7 @@ export default async function AddChildPage() {
   const userId = result.user.id;
   return (
     <main>
-      <ChildForm userId={userId} />
+      <TaskForm userId={userId} />
     </main>
   );
 }
