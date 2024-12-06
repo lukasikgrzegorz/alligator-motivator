@@ -5,58 +5,67 @@ import { createTask } from "@/lib/tasks";
 import { randomBytes } from "node:crypto";
 import { S3 } from "@aws-sdk/client-s3";
 
-const AWS_REGION = process.env.AWS_REGION;
-const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
-const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
-const AWS_BUCKET_NAME = process.env.AWS_BUCKET_NAME;
-
-const s3 = new S3({
-  region: AWS_REGION,
-  credentials: {
-    accessKeyId: AWS_ACCESS_KEY_ID,
-    secretAccessKey: AWS_SECRET_ACCESS_KEY,
-  },
-});
-
 export async function addTask(prevState, formData) {
-  const name = formData.get("name");
-  const image = formData.get("image");
-  const description = formData.get("description");
-  const points = formData.get("points");
   const userId = formData.get("userId");
   const childId = formData.get("childId");
-  let imageName = "";
+  const name = formData.get("name");
+  const imageUrl = formData.get("imageUrl");
+  const points = formData.get("points");
+  const isRecurring = Number(formData.get("is_recurring"));
+  let startDate = formData.get("start_date");
+  let endDate = formData.get("end_date");
 
   let errors = {};
 
   if (!userId) {
-    errors.user = "Incorrect authentication data";
+    errors.user = "Niepoprawne dane uwierzytelniające.";
   }
 
   if (name.trim().length < 2) {
-    errors.name = "Name must be at least 2 characters long.";
+    errors.name = "Nazwa musi mieć co najmniej 2 znaki.";
   }
 
-  if (image.size > 0) {
-    const extension = image.name.split(".").pop();
-    imageName = `${randomBytes(16).toString("hex")}.${extension}`;
-    const bufferedImage = await image.arrayBuffer();
-    await s3.putObject({
-      Bucket: AWS_BUCKET_NAME,
-      Key: imageName,
-      Body: Buffer.from(bufferedImage),
-      ContentType: image.type,
-    });
+  if (isRecurring === 0) {
+    if (!startDate && !endDate) {
+      errors.dates = "Uzupełnij pola daty rozpoczęcia i zakończenia zadania.";
+    }
+
+    if (!startDate && endDate) {
+      errors.dates = "Musisz podać zarówno datę rozpoczęcia, jak i zakończenia.";
+    } else if (startDate && !endDate) {
+      errors.dates = "Musisz podać zarówno datę rozpoczęcia, jak i zakończenia.";
+    } else if (
+      startDate &&
+      endDate &&
+      new Date(startDate) > new Date(endDate)
+    ) {
+      errors.dates = "Data zakończenia musi być późniejsza niż data rozpoczęcia.";
+    }
+  }
+
+  if (isRecurring === 1) {
+    startDate = "";
+    endDate = "";
   }
 
   if (Object.keys(errors).length) {
+    console.log(errors);
     return {
       errors,
     };
   }
 
   try {
-    await createTask(name, imageName, description, points, userId, childId);
+    await createTask(
+      name,
+      imageUrl,
+      points,
+      userId,
+      childId,
+      isRecurring,
+      startDate,
+      endDate
+    );
     revalidatePath(`/children/${childId}`);
     redirect(`/children/${childId}`);
   } catch (error) {

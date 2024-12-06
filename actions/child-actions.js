@@ -22,9 +22,6 @@ export async function addChild(prevState, formData) {
   const name = formData.get("name");
   const imageUrl = formData.get("imageUrl");
   const userId = formData.get("userId");
-  let imageName = "";
-
-  console.log(userId);
 
   let errors = {};
 

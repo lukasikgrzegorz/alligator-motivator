@@ -53,13 +53,7 @@ export default async function ChildDetailsPage({ params }) {
             <ul lassName={classes["list"]}>
               {tasks.map((task) => (
                 <li key={task.id}>
-                  <TaskItem
-                    taskName={task.name}
-                    taksPoints={task.points}
-                    userId={userId}
-                    childId={id}
-                    childPoints={child.points}
-                  />
+                  <TaskItem item={task} childPoints={child.points} />
                 </li>
               ))}
             </ul>

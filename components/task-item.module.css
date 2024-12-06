@@ -1,0 +1,78 @@
+.container{
+    display: flex;
+    gap: 0.25rem;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+
+.image-container {
+    width: 100%;
+    min-width: 4rem;
+    max-width: 4rem;
+    height: 4rem;
+    position: relative;
+}
+
+.image {
+    border-radius: 100%;
+    
+}
+
+.name{
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.points-container{
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.points{
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.coin-container {
+    width: 2rem;
+    height: 2rem;
+    position: relative;
+}
+
+.button {
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--link-color);
+    font: inherit;
+    cursor: pointer;
+    border: none;
+    color: var(--light-color);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem
+}
+
+.button:hover,
+.button:active {
+    transition: background-color 500ms ease;
+    background-color: var(--link-hover)
+}
+
+
+
+
+
+
+
+

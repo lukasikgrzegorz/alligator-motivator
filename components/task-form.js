@@ -33,18 +33,18 @@ export default function TaskForm({ userId, childId }) {
         type="hidden"
         name="imageUrl"
         id="imageUrl"
-        value={`/avatrs/${icon}.jpg`}
+        value={`/tasks/${icon}.jpg`}
       />
 
       {showIcons && (
         <ul className={classes["icon-list"]}>
-          {Array.from({ length: 12 }, (_, index) => (
+          {Array.from({ length: 4 }, (_, index) => (
             <li
               key={index}
               className={classes["image-container"]}
               onClick={() => handleIconClick(index + 1)}>
               <Image
-                src={`/avatars/${index + 1}.jpg`}
+                src={`/tasks/${index + 1}.jpg`}
                 fill
                 priority
                 alt={`Avatar ${index + 1}`}
@@ -59,7 +59,7 @@ export default function TaskForm({ userId, childId }) {
           <FaPencilAlt size={40} />
         </button>
         <Image
-          src={`/avatars/${icon}.jpg`}
+          src={`/tasks/${icon}.jpg`}
           fill
           priority
           alt="Icon"
@@ -100,6 +100,7 @@ export default function TaskForm({ userId, childId }) {
           <select
             name="is_recurring"
             id="is_recurring"
+            required
             className={classes["input"]}
             onChange={handleRecurringChange}>
             <option value="1">Tak</option>
