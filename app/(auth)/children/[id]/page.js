@@ -72,13 +72,7 @@ export default async function ChildDetailsPage({ params }) {
             <ul className={classes["list"]}>
               {rewards.map((reward) => (
                 <li key={reward.id}>
-                  <RewardItem
-                    rewardName={reward.name}
-                    rewardPoints={reward.points}
-                    userId={userId}
-                    childId={id}
-                    childPoints={child.points}
-                  />
+                  <RewardItem item={reward} childPoints={child.points} />
                 </li>
               ))}
             </ul>

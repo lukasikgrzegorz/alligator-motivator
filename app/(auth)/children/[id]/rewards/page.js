@@ -1,9 +1,10 @@
 import { verifyAuth } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import ChildForm from "@/components/child-form";
+import RewardForm from "@/components/reward-form";
 
-export default async function AddChildPage() {
+export default async function AddRewardPage({params}) {
   const result = await verifyAuth();
+  const { id } = params;
 
   if (!result.user) {
     return redirect("/");
@@ -12,7 +13,7 @@ export default async function AddChildPage() {
   const userId = result.user.id;
   return (
     <main>
-      <ChildForm userId={userId} />
+      <RewardForm userId={userId} childId={id} />
     </main>
   );
 }
