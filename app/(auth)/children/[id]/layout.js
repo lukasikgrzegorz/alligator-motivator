@@ -1,22 +1,26 @@
 import "../../../globals.css";
-import { logout } from "@/actions/auth-actions";
-import { FaSignOutAlt } from "react-icons/fa";
+import { verifyAuth } from "@/lib/auth";
+import { getChildren } from "@/lib/children";
+import Header from "@/components/header";
 
 export const metadata = {
   title: "Aligatorek Motywatorek",
   description: "Aplikacja motywująca",
 };
 
-export default function AuthRootLayout({ children, modal }) {
+export default async function AuthRootLayout({ children, modal, params }) {
+  const { id } = params;
+  const result = await verifyAuth();
+  const userId = result?.user.id;
+  const childrenList = getChildren(userId);
+
   return (
     <>
-      <header id="auth-header">
-        {/* <form action={logout}>
-          <button>
-            <FaSignOutAlt size={20} />
-          </button>
-        </form> */}
-      </header>
+      {userId ? (
+        <Header childrenList={childrenList} currentChildId={id} />
+      ) : (
+        <></>
+      )}
       {modal}
       {children}
     </>

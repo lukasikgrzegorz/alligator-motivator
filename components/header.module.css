@@ -1,0 +1,78 @@
+.header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    max-width: 50rem;
+    margin: auto;
+    position: relative;
+}
+
+.avatar-container {
+    width: 3rem;
+    height: 3rem;
+    position: relative;
+    cursor: pointer;
+}
+
+.image-container {
+    width: 2rem;
+    height: 2rem;
+    position: relative;
+    cursor: pointer;
+}
+
+.image{
+    border-radius: 100%;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background-color: var(--form-background);
+    width: 100%;
+    max-width: 12rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    position: absolute;
+    top: 3.5rem;
+    z-index: 2;
+}
+
+.link{
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 1.1rem;
+}
+
+.link:hover .image{
+    transform: scale(1.1);
+    transition: transform 300ms ease;
+}
+
+.button {
+    width: 100%;
+    max-width: 200px;
+    font: inherit;
+    cursor: pointer;
+    padding: 0.5rem;
+    border: none;
+    background-color: var(--button-background);
+    color: #fff;
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.button:hover,
+.button:active {
+    background-color: var(--button-hover);
+}
+
+
+
+

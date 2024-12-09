@@ -32,6 +32,7 @@ export default async function ChildDetailsPage({ params }) {
             className={classes["image"]}
             src={child.image}
             fill
+            priority
             alt={child.name}
           />
         </div>
@@ -50,7 +51,7 @@ export default async function ChildDetailsPage({ params }) {
         <div className={classes["column"]}>
           <h2 className={classes["header"]}>Zadania</h2>
           <div className={classes["container"]}>
-            <ul lassName={classes["list"]}>
+            <ul className={classes["list"]}>
               {tasks.map((task) => (
                 <li key={task.id}>
                   <TaskItem item={task} childPoints={child.points} />

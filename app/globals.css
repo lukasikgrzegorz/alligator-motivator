@@ -61,8 +61,6 @@ img{
   object-fit: cover;
 }
 
-
-
 #form-errors {
   list-style: none;
   margin: 0;
@@ -70,34 +68,9 @@ img{
   color: var(--error-color);
 }
 
-#auth-header {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  max-width: 50rem;
-  margin: auto;
-}
-
-#auth-header p {
-  font-size: 1.25rem;
-}
-
-#auth-header button{
-    background-color: var(--alt-accent-color);
-    border: none;
-    color: var(--light-color);
-    border-radius: 100%;
-    padding: 12px 12px 10px 14px;
-
-}
-
-#auth-header button:hover{
-  background-color: var(--alt-accent-color-light);
-}
-
 main {
   max-width: 50rem;
-  margin: 2rem auto;
+  margin: 1rem auto;
   display: flex;
   align-items: center;
   justify-content: center;

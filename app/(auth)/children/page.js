@@ -15,7 +15,7 @@ export default async function TrainingPage() {
   }
 
   const userId = result.user.id;
-  const userChildren = getChildren(userId);
+  const userChildren = await getChildren(userId);
 
   return (
     <main className={classes["container"]}>
