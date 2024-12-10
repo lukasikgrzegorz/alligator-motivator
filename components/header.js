@@ -33,7 +33,7 @@ export default function Header({ childrenList, currentChildId }) {
           fill
           className={classes["image"]}
           src={`${
-            childrenList.find((child) => child.id === Number(currentChildId))
+            childrenList.find((child) => child.id === currentChildId)
               .image
           }`}
         />
@@ -42,7 +42,7 @@ export default function Header({ childrenList, currentChildId }) {
       {isMenuOpen && (
         <ul className={classes["menu"]} ref={menuRef}>
           {childrenList
-            .filter((child) => child.id !== Number(currentChildId))
+            .filter((child) => child.id !== currentChildId)
             .map((child) => (
               <li key={child.id}>
                 <Link

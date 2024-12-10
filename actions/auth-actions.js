@@ -12,11 +12,11 @@ export async function signup(prevState, formData) {
   let errors = {};
 
   if (!email.includes("@")) {
-    errors.email = "Please eneter a valid email address.";
+    errors.email = "Podaj poprawny adres email.";
   }
 
   if (password.trim().length < 8) {
-    errors.password = "Password must be at least 8 characters long.";
+    errors.password = "Hasło musi mieć co najmniej 8 znaków.";
   }
 
   if (Object.keys(errors).length) {
@@ -34,7 +34,8 @@ export async function signup(prevState, formData) {
     if (error.code === "SQLITE_CONSTRAINT_UNIQUE") {
       return {
         errors: {
-          email: "It seems like an account for the chosen email alredy exists",
+          email:
+            "Wygląda na to, że konto dla podanego adresu email już istnieje.",
         },
       };
     }
@@ -51,7 +52,7 @@ export async function login(prevState, formData) {
   if (!existingUser) {
     return {
       errors: {
-        email: "Could not authenticate user, please chek your credentials.",
+        email: "Nie można uwierzytelnić użytkownika, sprawdź swoje dane.",
       },
     };
   }

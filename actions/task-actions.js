@@ -2,8 +2,6 @@
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { createTask } from "@/lib/tasks";
-import { randomBytes } from "node:crypto";
-import { S3 } from "@aws-sdk/client-s3";
 
 export async function addTask(prevState, formData) {
   const userId = formData.get("userId");
@@ -56,7 +54,7 @@ export async function addTask(prevState, formData) {
   }
 
   try {
-    await createTask(
+    createTask(
       name,
       imageUrl,
       points,

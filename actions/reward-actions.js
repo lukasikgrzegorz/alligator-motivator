@@ -2,25 +2,22 @@
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { createReward } from "@/lib/rewards";
-import { randomBytes } from "node:crypto";
-import { S3 } from "@aws-sdk/client-s3";
 
 export async function addReward(prevState, formData) {
   const name = formData.get("name");
   const imageUrl = formData.get("imageUrl");
   const points = formData.get("points");
   const userId = formData.get("userId");
-  const childId = formData.get("childId"); // Dodano childId
-  let imageName = "";
+  const childId = formData.get("childId"); 
 
   let errors = {};
 
   if (!userId) {
-    errors.user = "Incorrect authentication data";
+    errors.user = "Niepoprawne dane uwierzytelniające.";
   }
 
   if (name.trim().length < 2) {
-    errors.name = "Name must be at least 2 characters long.";
+    errors.name = "Nazwa musi mieć co najmniej 2 znaki.";
   }
 
 
@@ -31,7 +28,7 @@ export async function addReward(prevState, formData) {
   }
 
   try {
-    await createReward(name, imageUrl, points, userId, childId);
+    createReward(name, imageUrl, points, userId, childId);
     revalidatePath(`/children/${childId}`);
     redirect(`/children/${childId}`);
   } catch (error) {

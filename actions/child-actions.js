@@ -5,18 +5,6 @@ import { createChildren, updatePoints } from "@/lib/children";
 import { randomBytes } from "node:crypto";
 import { S3 } from "@aws-sdk/client-s3";
 
-const AWS_REGION = process.env.AWS_REGION;
-const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
-const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
-const AWS_BUCKET_NAME = process.env.AWS_BUCKET_NAME;
-
-const s3 = new S3({
-  region: AWS_REGION,
-  credentials: {
-    accessKeyId: AWS_ACCESS_KEY_ID,
-    secretAccessKey: AWS_SECRET_ACCESS_KEY,
-  },
-});
 
 export async function addChild(prevState, formData) {
   const name = formData.get("name");
@@ -26,11 +14,11 @@ export async function addChild(prevState, formData) {
   let errors = {};
 
   if (!userId) {
-    errors.user = "Incorrect authentication data";
+    errors.user = "Niepoprawne dane uwierzytelniające.";
   }
 
   if (name.trim().length < 2) {
-    errors.password = "Name must be at least 2 characters long.";
+    errors.password = "Nazwa musi mieć co najmniej 2 znaki.";
   }
 
   if (Object.keys(errors).length) {
