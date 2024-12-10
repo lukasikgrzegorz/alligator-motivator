@@ -1,10 +1,7 @@
 "use server";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import { createChildren, updatePoints } from "@/lib/children";
-import { randomBytes } from "node:crypto";
-import { S3 } from "@aws-sdk/client-s3";
-
+import { createChild, updatePoints } from "@/lib/children";
 
 export async function addChild(prevState, formData) {
   const name = formData.get("name");
@@ -28,7 +25,7 @@ export async function addChild(prevState, formData) {
   }
 
   try {
-    createChildren(name, imageUrl, userId);
+    createChild(name, imageUrl, userId);
     revalidatePath("/children");
     redirect("/children");
   } catch (error) {
