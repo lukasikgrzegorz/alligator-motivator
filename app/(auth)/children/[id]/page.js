@@ -3,26 +3,28 @@ import { redirect } from "next/navigation";
 import TaskItem from "@/components/task-item";
 import RewardItem from "@/components/reward-item";
 import { getChild } from "@/lib/children";
-import { getTasks } from "@/lib/tasks";
+import { getTasks, getUncompletedTasks } from "@/lib/tasks";
 import { getRewards } from "@/lib/rewards";
 import { FaPlus } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
 import classes from "./page.module.css";
 
-export default async function ChildDetailsPage({ params }) {
-  const result = await verifyAuth();
-  const { id } = params;
+export default async function ChildDetailsPage({ params, searchParams }) {
+  const pageMode = searchParams.mode || "child";
 
-  if (!result.user) {
-    return redirect("/");
+  if (pageMode === "parent") {
+    const result = await verifyAuth();
+    if (!result.user) {
+      return redirect("/");
+    }
   }
 
-  const userId = result.user.id;
+  const { id } = params;
 
-  const child = await getChild(id, userId);
-  const tasks = await getTasks(id);
-  const rewards = await getRewards(id);
+  const child = getChild(id);
+  const tasks = pageMode === "parent" ? getTasks(id) : getUncompletedTasks(id);
+  const rewards = getRewards(id);
 
   return (
     <main>
@@ -58,12 +60,14 @@ export default async function ChildDetailsPage({ params }) {
                 </li>
               ))}
             </ul>
-            <Link href={`/children/${id}/tasks`}>
-              <button className={classes["button"]}>
-                <FaPlus fontSize={15} />
+            {pageMode === "parent" && (
+              <Link href={`/children/${id}/tasks`}>
+                <button className={classes["button"]}>
+                  <FaPlus fontSize={15} />
                 Dodaj
-              </button>
-            </Link>
+                </button>
+              </Link>
+            )}
           </div>
         </div>
 
@@ -77,12 +81,14 @@ export default async function ChildDetailsPage({ params }) {
                 </li>
               ))}
             </ul>
-            <Link href={`/children/${id}/rewards`}>
-              <button className={classes["button"]}>
-                <FaPlus fontSize={15} />
+            {pageMode === "parent" && (
+              <Link href={`/children/${id}/rewards`}>
+                <button className={classes["button"]}>
+                  <FaPlus fontSize={15} />
                 Dodaj
-              </button>
-            </Link>
+                </button>
+              </Link>
+            )}
           </div>
         </div>
       </div>

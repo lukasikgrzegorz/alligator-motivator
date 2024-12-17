@@ -30,7 +30,7 @@ export async function addReward(prevState, formData) {
   try {
     createReward(name, imageUrl, points, userId, childId);
     revalidatePath(`/children/${childId}`);
-    redirect(`/children/${childId}`);
+    redirect(`/children/${childId}?mode=parent`);
   } catch (error) {
     throw error;
   }

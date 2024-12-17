@@ -1,7 +1,7 @@
 "use server";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import { createChild, updatePoints } from "@/lib/children";
+import { createChild, updatePoints, addChildActivity } from "@/lib/children";
 
 export async function addChild(prevState, formData) {
   const name = formData.get("name");
@@ -36,7 +36,11 @@ export async function addChild(prevState, formData) {
 export async function updateChildPoints(prevState, formData) {
   const id = formData.get("childId");
   const userId = formData.get("userId");
+  const childPoints = Number(formData.get("childPoints"));
   const points = Number(formData.get("points"));
+  const type = formData.get("type");
+  const activityId = formData.get("activityId");
+
   let errors = {};
 
   if (!userId) {
@@ -59,7 +63,8 @@ export async function updateChildPoints(prevState, formData) {
   }
 
   try {
-    updatePoints(id, userId, points);
+    updatePoints(id, childPoints);
+    addChildActivity(id, points, type, activityId);
     revalidatePath(`/children/${id}`);
     redirect(`/children/${id}`);
   } catch (error) {

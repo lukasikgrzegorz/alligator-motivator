@@ -11,7 +11,7 @@ export const metadata = {
 export default async function AuthRootLayout({ children, modal, params }) {
   const { id } = params;
   const result = await verifyAuth();
-  const userId = result?.user.id;
+  const userId = result?.user?.id || null;
   const childrenList = getChildren(userId);
 
   return (

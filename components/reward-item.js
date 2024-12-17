@@ -49,7 +49,20 @@ export default function TaskItem({ item, childPoints }) {
           id="childId"
           value={item["child_id"]}
         />
-        <input type="hidden" name="points" id="points" value={points} />
+        <input type="hidden" name="type" id="type" value="reward" />
+        <input
+          type="hidden"
+          name="childPoints"
+          id="childPoints"
+          value={points}
+        />
+        <input type="hidden" name="points" id="points" value={item.points} />
+        <input
+          type="hidden"
+          name="activityId"
+          id="activityId"
+          value={item.id}
+        />
         <p>
           <button
             type="submit"

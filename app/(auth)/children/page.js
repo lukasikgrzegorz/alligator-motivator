@@ -23,7 +23,7 @@ export default async function TrainingPage() {
       <ul id="children" className={classes["list"]}>
         {userChildren.map((child) => (
           <li key={child.id}>
-            <Link className={classes["link"]} href={`children/${child.id}`}>
+            <Link className={classes["link"]} href={`children/${child.id}?mode=parent`}>
               <div className={classes["image-container"]}>
                 <Image
                   className={classes["image"]}

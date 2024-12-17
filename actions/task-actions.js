@@ -65,7 +65,7 @@ export async function addTask(prevState, formData) {
       endDate
     );
     revalidatePath(`/children/${childId}`);
-    redirect(`/children/${childId}`);
+    redirect(`/children/${childId}?mode=parent`);
   } catch (error) {
     throw error;
   }
