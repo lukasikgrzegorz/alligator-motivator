@@ -1,7 +1,7 @@
 "use server";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import { createReward } from "@/lib/rewards";
+import { createReward, deleteReward as deleteRewardFromDb } from "@/lib/rewards";
 
 export async function addReward(prevState, formData) {
   const name = formData.get("name");
@@ -29,6 +29,32 @@ export async function addReward(prevState, formData) {
 
   try {
     createReward(name, imageUrl, points, userId, childId);
+    revalidatePath(`/children/${childId}`);
+    redirect(`/children/${childId}?mode=parent`);
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function deleteReward(prevState, formData) {
+  const userId = formData.get("userId");
+  const childId = formData.get("childId");
+  const id = formData.get("activityId");
+
+  let errors = {};
+
+  if (!userId) {
+    errors.user = "Niepoprawne dane uwierzytelniające.";
+  }
+
+  if (Object.keys(errors).length) {
+    return {
+      errors,
+    };
+  }
+
+  try {
+    deleteRewardFromDb(id, userId);
     revalidatePath(`/children/${childId}`);
     redirect(`/children/${childId}?mode=parent`);
   } catch (error) {

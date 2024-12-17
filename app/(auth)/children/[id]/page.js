@@ -56,7 +56,11 @@ export default async function ChildDetailsPage({ params, searchParams }) {
             <ul className={classes["list"]}>
               {tasks.map((task) => (
                 <li key={task.id}>
-                  <TaskItem item={task} childPoints={child.points} />
+                  <TaskItem
+                    item={task}
+                    childPoints={child.points}
+                    mode={pageMode}
+                  />
                 </li>
               ))}
             </ul>
@@ -64,7 +68,7 @@ export default async function ChildDetailsPage({ params, searchParams }) {
               <Link href={`/children/${id}/tasks`}>
                 <button className={classes["button"]}>
                   <FaPlus fontSize={15} />
-                Dodaj
+                  Dodaj
                 </button>
               </Link>
             )}
@@ -77,7 +81,11 @@ export default async function ChildDetailsPage({ params, searchParams }) {
             <ul className={classes["list"]}>
               {rewards.map((reward) => (
                 <li key={reward.id}>
-                  <RewardItem item={reward} childPoints={child.points} />
+                  <RewardItem
+                    item={reward}
+                    childPoints={child.points}
+                    mode={pageMode}
+                  />
                 </li>
               ))}
             </ul>
@@ -85,7 +93,7 @@ export default async function ChildDetailsPage({ params, searchParams }) {
               <Link href={`/children/${id}/rewards`}>
                 <button className={classes["button"]}>
                   <FaPlus fontSize={15} />
-                Dodaj
+                  Dodaj
                 </button>
               </Link>
             )}

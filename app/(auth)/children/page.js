@@ -7,7 +7,7 @@ import { FaUserPlus } from "react-icons/fa";
 import classes from "./page.module.css";
 
 
-export default async function TrainingPage() {
+export default async function ChildrenPage() {
   const result = await verifyAuth();
 
   if (!result.user) {
@@ -15,7 +15,7 @@ export default async function TrainingPage() {
   }
 
   const userId = result.user.id;
-  const userChildren = await getChildren(userId);
+  const userChildren = getChildren(userId);
 
   return (
     <main className={classes["container"]}>

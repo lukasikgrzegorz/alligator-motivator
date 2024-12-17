@@ -47,7 +47,7 @@ export default function Header({ childrenList, currentChildId }) {
               <li key={child.id}>
                 <Link
                   className={classes["link"]}
-                  href={`/children/${child.id}`}>
+                  href={`/children/${child.id}?mode=parent`}>
                   <div className={classes["image-container"]}>
                     <Image
                       className={classes["image"]}

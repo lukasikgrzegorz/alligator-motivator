@@ -2,11 +2,15 @@
 import Image from "next/image";
 import { useFormState } from "react-dom";
 import { updateChildPoints } from "@/actions/child-actions";
+import { deleteReward } from "@/actions/reward-actions";
 import classes from "./reward-item.module.css";
-import { FaCheck } from "react-icons/fa";
+import { FaCheck, FaTrash } from "react-icons/fa";
 
-export default function TaskItem({ item, childPoints }) {
-  const [formState, formAction] = useFormState(updateChildPoints, {});
+export default function RewardItemItem({ item, childPoints, mode }) {
+  const [formState, formAction] = useFormState(
+    mode === "parent" ? deleteReward : updateChildPoints,
+    {}
+  );
   const points = childPoints - item.points;
 
   return (
@@ -64,12 +68,18 @@ export default function TaskItem({ item, childPoints }) {
           value={item.id}
         />
         <p>
-          <button
-            type="submit"
-            className={classes["button"]}
-            disabled={childPoints < item.points}>
-            <FaCheck />
-          </button>
+          {mode === "parent" ? (
+            <button type="submit" className={classes["button"]}>
+              <FaTrash />
+            </button>
+          ) : (
+            <button
+              type="submit"
+              className={classes["button"]}
+              disabled={childPoints < item.points}>
+              <FaCheck />
+            </button>
+          )}
         </p>
       </form>
     </div>

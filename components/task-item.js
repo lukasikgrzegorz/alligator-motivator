@@ -2,11 +2,15 @@
 import Image from "next/image";
 import { useFormState } from "react-dom";
 import { updateChildPoints } from "@/actions/child-actions";
+import { deleteTask } from "@/actions/task-actions";
 import classes from "./task-item.module.css";
-import { FaCheck } from "react-icons/fa";
+import { FaCheck, FaTrash } from "react-icons/fa";
 
-export default function TaskItem({ item, childPoints }) {
-  const [formState, formAction] = useFormState(updateChildPoints, {});
+export default function TaskItem({ item, childPoints, mode }) {
+  const [formState, formAction] = useFormState(
+    mode === "parent" ? deleteTask : updateChildPoints,
+    {}
+  );
   const points = childPoints + item.points;
 
   return (
@@ -23,6 +27,11 @@ export default function TaskItem({ item, childPoints }) {
 
       <div className={classes["wrapper"]}>
         <h3 className={classes["name"]}>{item.name}</h3>
+        <p className={classes["frequency"]}>
+          {item.is_recurring
+            ? "Codziennie"
+            : `Od ${item.start_date} do ${item.end_date}`}
+        </p>
         <div className={classes["points-container"]}>
           <div className={classes["coin-container"]}>
             <Image src="/images/coin.png" fill priority alt="A coin icon" />
@@ -51,23 +60,26 @@ export default function TaskItem({ item, childPoints }) {
           id="childPoints"
           value={points}
         />
-        <input
-          type="hidden"
-          name="points"
-          id="points"
-          value={item.points}
-        />
+        <input type="hidden" name="points" id="points" value={item.points} />
         <input
           type="hidden"
           name="activityId"
           id="activityId"
           value={item.id}
         />
-        <p>
-          <button type="submit" className={classes["button"]}>
-            <FaCheck />
-          </button>
-        </p>
+        {mode === "parent" ? (
+          <p>
+            <button type="submit" className={classes["button"]}>
+              <FaTrash />
+            </button>
+          </p>
+        ) : (
+          <p>
+            <button type="submit" className={classes["button"]}>
+              <FaCheck />
+            </button>
+          </p>
+        )}
       </form>
     </div>
   );

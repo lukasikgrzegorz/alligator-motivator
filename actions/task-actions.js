@@ -1,7 +1,7 @@
 "use server";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import { createTask } from "@/lib/tasks";
+import { createTask, deleteTask as deleteTaskFromDb } from "@/lib/tasks";
 
 export async function addTask(prevState, formData) {
   const userId = formData.get("userId");
@@ -70,3 +70,30 @@ export async function addTask(prevState, formData) {
     throw error;
   }
 }
+
+export async function deleteTask(prevState, formData) {
+  const userId = formData.get("userId");
+  const childId = formData.get("childId");
+  const id = formData.get("activityId");
+
+  let errors = {};
+
+  if (!userId) {
+    errors.user = "Niepoprawne dane uwierzytelniające.";
+  }
+
+  if (Object.keys(errors).length) {
+    return {
+      errors,
+    };
+  }
+
+  try {
+    deleteTaskFromDb(id, userId);
+    revalidatePath(`/children/${childId}`);
+    redirect(`/children/${childId}?mode=parent`);
+  } catch (error) {
+    throw error;
+  }
+}
+
