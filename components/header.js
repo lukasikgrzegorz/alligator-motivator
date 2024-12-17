@@ -33,8 +33,7 @@ export default function Header({ childrenList, currentChildId }) {
           fill
           className={classes["image"]}
           src={`${
-            childrenList.find((child) => child.id === currentChildId)
-              .image
+            childrenList.find((child) => child.id === currentChildId).image
           }`}
         />
       </div>
@@ -59,6 +58,9 @@ export default function Header({ childrenList, currentChildId }) {
                 </Link>
               </li>
             ))}
+          <li>
+            <Link href={`/children`}>Zarządzaj profilami</Link>
+          </li>
           <li>
             <form action={logout}>
               <button className={classes["button"]}>

@@ -34,16 +34,33 @@
   height: 10rem;
   position: relative;
   margin: auto;
+  background-color: var(--alt-accent-secondary-color);
+  border-radius: 100%;
 }
 
 .image {
   width: 100%;
   border-radius: 100%;
+  transition: filter 300ms ease;
+  transition: opacity 300ms ease;
 }
 
 .image:hover {
   transform: scale(1.02);
   transition: transform 300ms ease;
+}
+
+.transparent{
+  opacity: 0.2;
+}
+
+.image-edit{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--alt-accent-color);
+  pointer-events: none;
 }
 
 .name{
@@ -67,9 +84,30 @@
   border-radius: 100%;
 }
 
-
 .add-button:hover {
   transform: scale(1.02);
   transition: transform 500ms ease;
+}
+
+.button {
+  width: 100%;
+  max-width: 300px;
+  font: inherit;
+  cursor: pointer;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background-color: var(--button-background);
+  color: #fff;
+  border-radius: 0.75rem;
+  margin-top: 1rem;
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+  transition: background-color 500ms ease;
+}
+
+.button:hover,
+.button:active {
+  background-color: var(--button-hover);
 }
 

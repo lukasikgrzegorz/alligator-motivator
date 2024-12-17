@@ -1,7 +1,13 @@
 "use server";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import { createChild, updatePoints, addChildActivity } from "@/lib/children";
+import {
+  createChild,
+  updatePoints,
+  addChildActivity,
+  updateChild,
+  deleteChild as deleteChildFromDb,
+} from "@/lib/children";
 
 export async function addChild(prevState, formData) {
   const name = formData.get("name");
@@ -30,6 +36,48 @@ export async function addChild(prevState, formData) {
     redirect("/children");
   } catch (error) {
     throw error;
+  }
+}
+
+export async function editChild(prevState, formData) {
+  const name = formData.get("name");
+  const imageUrl = formData.get("imageUrl");
+  const userId = formData.get("userId");
+  const childId = formData.get("childId");
+  const actionType = formData.get("actionType");
+
+  let errors = {};
+
+  if (actionType === "delete") {
+    try {
+      deleteChildFromDb(childId, userId);
+      revalidatePath("/children");
+      redirect("/children");
+    } catch (error) {
+      throw error;
+    }
+  } else {
+    if (!userId) {
+      errors.user = "Niepoprawne dane uwierzytelniające.";
+    }
+
+    if (name.trim().length < 2) {
+      errors.password = "Nazwa musi mieć co najmniej 2 znaki.";
+    }
+
+    if (Object.keys(errors).length) {
+      return {
+        errors,
+      };
+    }
+
+    try {
+      updateChild(childId, userId, name, imageUrl);
+      revalidatePath("/children");
+      redirect("/children?mode=edit");
+    } catch (error) {
+      throw error;
+    }
   }
 }
 

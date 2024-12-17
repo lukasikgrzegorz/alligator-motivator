@@ -5,7 +5,7 @@ import RewardItem from "@/components/reward-item";
 import { getChild } from "@/lib/children";
 import { getTasks, getUncompletedTasks } from "@/lib/tasks";
 import { getRewards } from "@/lib/rewards";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaEye, FaChild} from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
 import classes from "./page.module.css";
@@ -37,6 +37,18 @@ export default async function ChildDetailsPage({ params, searchParams }) {
             priority
             alt={child.name}
           />
+
+          {pageMode === "parent" && (
+            <div className={classes["preview"]}>
+              <Link
+                className={classes["preview-link"]}
+                href={`/children/${id}`}
+                target="_blank"
+                rel="noopener noreferrer">
+                <FaChild size={20} />
+              </Link>
+            </div>
+          )}
         </div>
         <div className={classes["profile-details"]}>
           <h2 className={classes["name"]}>{child.name}</h2>

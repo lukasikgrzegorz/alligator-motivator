@@ -1,0 +1,164 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 90%;
+  max-width: 30rem;
+  border-radius: 1rem;
+  padding: 2rem 3rem;
+  background-color: var(--form-background);
+  box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+
+.image {
+  width: 100%;
+  border-radius: 100%;
+}
+
+.avatar-container {
+  width: 10rem;
+  height: 10rem;
+  position: relative;
+  margin: auto;
+  cursor: pointer;
+  border-radius: 100%;
+}
+
+.avatar-container:hover .image {
+  opacity: 0.05;
+  transition: opacity 1000ms ease;
+}
+
+.edit-button {
+  background-color: var(--alt-accent-secondary-color);
+  width: 10rem;
+  height: 10rem;
+  border: none;
+  color: var(--alt-accent-color);
+  border-radius: 100%;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.15rem;
+  font-weight: 600;
+  color: var(--text-color);
+  width: 100%;
+}
+
+.paragraph {
+  width: 100%;
+  max-width: 15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  font: inherit;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  border: 2px solid #f0f0f0;
+  background-color: #ffffff;
+  color: #46454a;
+}
+
+.button-container{
+  display: flex;
+
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.button {
+  width: 100%;
+  max-width: 200px;
+  font: inherit;
+  cursor: pointer;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  background-color: var(--button-background);
+  color: #fff;
+  border-radius: 0.75rem;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.button:hover,
+.button:active {
+  background-color: var(--button-hover);
+}
+
+.delete{
+  background-color: var(--alt-accent-color);
+}
+
+.delete:hover,
+.delete:active {
+  background-color: var(--alt-accent-secondary-color);
+}
+
+
+.image-container {
+  width: 5rem;
+  height: 5rem;
+  position: relative;
+  margin: auto;
+}
+
+.avatar-list {
+  background-color: var(--form-background);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  justify-items: start;
+  position: absolute;
+  height: calc(100% - 3.95rem);
+  width: 100%;
+  z-index: 2;
+  padding: 0.5rem 2rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.avatar-list .image{
+  cursor: pointer;
+}
+
+.avatar-list .image:hover {
+  transform: scale(1.05);
+  transition: transform 500ms ease;
+}
+
+.add-button {
+  background-color: var(--alt-accent-secondary-color);
+  width: 5rem;
+  height: 5rem;
+  border: none;
+  color: var(--alt-accent-color);
+  border-radius: 100%;
+}
+
+@media (max-width: 768px) {
+  .avatar-list{grid-template-columns: repeat(3, 1fr);}
+}
+
+@media (max-width: 480px) {
+  .avatar-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.hidden{
+  display: none;
+}
+
+
+

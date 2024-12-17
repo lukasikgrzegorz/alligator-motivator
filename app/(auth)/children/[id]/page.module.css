@@ -20,6 +20,30 @@
   border-radius: 100%;
 }
 
+.preview{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: var(--alt-accent-color);
+  border-radius: 100%;
+  width: 2.75rem;
+  height: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 500ms ease;
+}
+
+.preview:hover{
+  transform: scale(1.05);
+}
+
+.preview-link{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .profile-details{
   line-height: 1;
   display: flex;
