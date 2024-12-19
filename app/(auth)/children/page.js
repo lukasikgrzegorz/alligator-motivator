@@ -60,14 +60,16 @@ export default async function ChildrenPage({ searchParams }) {
         )}
       </ul>
       {pageMode === "edit" ? (
-        <Link href={`/children`}>
+        <Link className={classes["button-wrapper"]} href={`/children`}>
           <button className={classes["button"]}>
             <FaCheck size={15} />
             Gotowe
           </button>
         </Link>
       ) : (
-        <Link href={`/children?mode=edit`}>
+        <Link
+          className={classes["button-wrapper"]}
+          href={`/children?mode=edit`}>
           <button className={classes["button"]}>
             <FaPencilAlt size={15} /> Zarządzaj profilami
           </button>

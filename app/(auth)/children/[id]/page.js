@@ -5,7 +5,8 @@ import RewardItem from "@/components/reward-item";
 import { getChild } from "@/lib/children";
 import { getTasks, getUncompletedTasks } from "@/lib/tasks";
 import { getRewards } from "@/lib/rewards";
-import { FaPlus, FaEye, FaChild} from "react-icons/fa";
+import { FaPlus, FaChild } from "react-icons/fa";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import classes from "./page.module.css";
@@ -13,16 +14,20 @@ import classes from "./page.module.css";
 export default async function ChildDetailsPage({ params, searchParams }) {
   const pageMode = searchParams.mode || "child";
 
+  const { id } = params;
+  const child = getChild(id);
+
+  if (!child) {
+    notFound();
+  }
+
   if (pageMode === "parent") {
     const result = await verifyAuth();
-    if (!result.user) {
+    if (!result.user || result.user.id !== child.user_id) {
       return redirect("/");
     }
   }
 
-  const { id } = params;
-
-  const child = getChild(id);
   const tasks = pageMode === "parent" ? getTasks(id) : getUncompletedTasks(id);
   const rewards = getRewards(id);
 

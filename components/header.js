@@ -26,16 +26,14 @@ export default function Header({ childrenList, currentChildId }) {
     };
   }, []);
 
+  const currentChildImageUrl = childrenList.find(
+    (child) => child.id === currentChildId
+  )?.image;
+
   return (
     <header className={classes["header"]}>
       <div className={classes["avatar-container"]} onClick={toggleMenu}>
-        <Image
-          fill
-          className={classes["image"]}
-          src={`${
-            childrenList.find((child) => child.id === currentChildId).image
-          }`}
-        />
+        <Image fill className={classes["image"]} src={currentChildImageUrl} />
       </div>
 
       {isMenuOpen && (
